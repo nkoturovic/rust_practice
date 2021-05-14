@@ -1,0 +1,15 @@
+[package]
+name = "rust_practice"
+version = "0.1.0"
+authors = ["Nebojša Koturović <necer95@gmail.com>"]
+edition = "2018"
+
+[[bin]]
+name = "01_hello"
+path = "examples/01_hello/main.rs"
+
+[[bin]]
+name = "02_example"
+path = "examples/02_example/main.rs"
+
+[dependencies]
