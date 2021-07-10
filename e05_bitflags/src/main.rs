@@ -20,10 +20,10 @@ enum Group {
 // Action -> Requires some permissions
 // Action -> Can derive permissions from subactions
 // All actions should be compile-time known?
- // // // // struct Action {
- // // // //     // instance
- // // // // // Fields: ...
- // // // // // fn action()
+// // // // struct Action {
+// // // //     // instance
+// // // // // Fields: ...
+// // // // // fn action()
 // // // // }
 // or
 // |
@@ -45,9 +45,8 @@ trait Permissions<T> {
 }
 
 fn main() {
-
     // it works!
-    let flags : Permission = Permission::CREATE | Permission::READ;
+    let flags: Permission = Permission::CREATE | Permission::READ;
     println!("{:?}", flags);
 }
 
