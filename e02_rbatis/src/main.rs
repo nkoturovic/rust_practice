@@ -15,7 +15,9 @@ extern crate derive_builder;
 #[crud_enable(table_name:users)]
 #[derive(Builder, Default, Validate, Serialize, Deserialize, Debug)]
 #[builder(setter(into, strip_option), default)]
+// #[permissions(Admin(CRUD), Other(R)]
 struct User {
+    // #[permissions(Admin(CRUD), Owner(CD), Other(R)]
     pub id : Option<u64>,
     pub username : Option<String>,
     pub password : Option<String>,
@@ -27,6 +29,9 @@ struct User {
     pub join_date : Option<String>,
     pub permission_group : Option<u64>,
 }
+
+// Database Creation default values and what to do when change structure
+// How to make DB to not make conflicts
 
 #[tokio::main]
 async fn main() {

@@ -1,20 +1,9 @@
 [package]
-name = "rust_practice"
+name = "e02_rbatis"
 version = "0.1.0"
-authors = ["Nebojša Koturović <necer95@gmail.com>"]
 edition = "2018"
 
-[[bin]]
-name = "01_validation"
-path = "examples/01_validation/main.rs"
-
-[[bin]]
-name = "02_rbatis"
-path = "examples/02_rbatis/main.rs"
-
-[[bin]]
-name = "03_const"
-path = "examples/03_const/main.rs"
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
