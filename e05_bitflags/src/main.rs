@@ -20,17 +20,17 @@ enum Group {
 // Action -> Requires some permissions
 // Action -> Can derive permissions from subactions
 // All actions should be compile-time known?
-struct Action {
-    // instance
-// Fields: ...
-// fn action()
-}
+ // // // // struct Action {
+ // // // //     // instance
+ // // // // // Fields: ...
+ // // // // // fn action()
+// // // // }
 // or
 // |
 // v
 
 // Permission requirements
-// #[Permissions(StructName:CR, field1:C, field2:R)]
+// #[action(permissions(StructName:CR, field1:C, field2:R))]
 // fn some_action() -> StructName {
 // }
 // Maybe should be enclosed and within that encolsure to have permissions somehow???
