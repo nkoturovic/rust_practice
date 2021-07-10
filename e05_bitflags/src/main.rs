@@ -17,6 +17,55 @@ enum Group {
     Owner,
 }
 
+struct User {
+    id: Option<u32>,
+    name: Option<String>,
+}
+
+struct UserPermissions {
+    id: Permission,
+    name: Permission,
+}
+
+trait PermissionInfo {
+    type Model;
+    type ModelPermissions;
+    fn get_permissions(g: Group) -> Self::ModelPermissions;
+    fn check_permissions(
+        self,
+        group: Group,
+        desired: Self::ModelPermissions,
+    ) -> Result<(), String>;
+}
+
+impl PermissionInfo for User {
+    type Model = Self;
+    type ModelPermissions = UserPermissions;
+
+    fn get_permissions(g: Group) -> Self::ModelPermissions {
+        todo!();
+    }
+
+    fn check_permissions(
+        self,
+        group: Group,
+        desired: Self::ModelPermissions,
+    ) -> Result<(), String> {
+        let perms = Self::get_permissions(group);
+        if (perms.id & desired.id) != desired.id {
+            return Err(String::from("id does not satisfy permissions"));
+        }
+
+        if (perms.name & desired.name) != desired.name {
+            return Err(String::from("name does not satisfy permissions"));
+        }
+
+        Ok(())
+    }
+}
+
+// #[permissions(guest:R,user:CR,owner:CRUD)]
+
 // Action -> Requires some permissions
 // Action -> Can derive permissions from subactions
 // All actions should be compile-time known?
@@ -30,6 +79,7 @@ enum Group {
 // v
 
 // Permission requirements
+// Something like: #[crud_enable(table_name:users)]
 // #[action(permissions(StructName:CR, field1:C, field2:R))]
 // fn some_action() -> StructName {
 // }
@@ -40,9 +90,9 @@ enum Group {
 // who asked for u.get_all() ?
 
 // Does group G ((has Permissions P) for action A) on resource T
-trait Permissions<T> {
-    fn has_permissions(g: Group, a: Action) {}
-}
+// trait Permissions<T> {
+//     fn has_permissions(g: Group, a: Action) {}
+// }
 
 fn main() {
     // it works!
